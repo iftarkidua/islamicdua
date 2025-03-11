@@ -1,1 +1,223 @@
-welcome to new blog
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Dua - Daily Prayers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #2a6230;
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #c8e6c9;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: #fff;
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            left: -250px;
+            top: 60px;
+            transition: 0.3s;
+            padding: 1rem;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin: 1rem 0;
+        }
+
+        .sidebar a {
+            color: #2a6230;
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 2rem;
+            transition: 0.3s;
+        }
+
+        .dua-card {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #2a6230;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* Mobile Menu Icon */
+        .menu-icon {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .sidebar.active + .main-content {
+                margin-left: 250px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .sidebar {
+                left: 0;
+            }
+
+            .main-content {
+                margin-left: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="#" class="logo">🌙 Islamic Dua</a>
+        <i class="menu-icon fas fa-bars"></i>
+        <nav class="nav-menu">
+            <a href="#home">Home</a>
+            <a href="#duas">Duas</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h3>Categories</h3>
+        <ul>
+            <li><a href="#morning">Morning Duas</a></li>
+            <li><a href="#night">Evening Duas</a></li>
+            <li><a href="#prayer">Prayer Duas</a></li>
+            <li><a href="#quran">Quranic Duas</a></li>
+            <li><a href="#prophet">Prophet's Duas</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="dua-card">
+            <h2>Morning Dua</h2>
+            <p class="arabic">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ...</p>
+            <p>Translation: "We have reached the morning and at this very time all sovereignty belongs to Allah..."</p>
+        </div>
+
+        <div class="dua-card">
+            <h2>Evening Dua</h2>
+            <p class="arabic">أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ...</p>
+            <p>Translation: "We have reached the evening and at this very time all sovereignty belongs to Allah..."</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2023 Islamic Dua. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#privacy">Privacy Policy</a> | 
+            <a href="#terms">Terms of Use</a>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Sidebar
+        document.querySelector('.menu-icon').addEventListener('click', () => {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (event) => {
+            const sidebar = document.querySelector('.sidebar');
+            const menuIcon = document.querySelector('.menu-icon');
+            
+            if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
