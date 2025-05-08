@@ -1,235 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="29_xXg4FIuGNiVV71TveKKdfTgFPYSRx0DHiVKqWONs" />
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N9XT315RMY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-N9XT315RMY');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Dua - Daily Prayers</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta name="description" content="Islamic Dua and Prayer Resource - Find authentic duas from Quran and Sunnah">
+    <title>Islamic Duas & Prayers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri&display=swap">
     <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #81C784;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Amiri', serif;
         }
 
         body {
-            background-color: #f5f5f5;
+            background-color: var(--bg-color);
+            line-height: 1.6;
         }
 
-        /* Header Styles */
         .header {
-            background-color: #2a6230;
-            color: white;
+            background-color: var(--primary-color);
             padding: 1rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .logo {
+            color: white;
             font-size: 1.5rem;
-            font-weight: bold;
             text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
             color: white;
+            font-size: 1.5rem;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
         }
 
-        /* Navigation Menu */
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: #c8e6c9;
-        }
-
-        /* Sidebar Styles */
         .sidebar {
-            background-color: #fff;
+            background-color: white;
             width: 250px;
-            height: 100vh;
             position: fixed;
-            left: -250px;
+            left: 0;
             top: 60px;
-            transition: 0.3s;
+            bottom: 0;
             padding: 1rem;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         }
 
-        .sidebar.active {
-            left: 0;
-        }
-
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar li {
-            margin: 1rem 0;
-        }
-
-        .sidebar a {
-            color: #2a6230;
-            text-decoration: none;
-        }
-
-        /* Main Content */
         .main-content {
-            margin-top: 80px;
+            margin-top: 60px;
+            margin-left: 250px;
             padding: 2rem;
-            transition: 0.3s;
         }
 
-        .dua-card {
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .post-card {
             background: white;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
             border-radius: 8px;
+            overflow: hidden;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
 
-        /* Footer Styles */
-        .footer {
-            background-color: #2a6230;
-            color: white;
-            padding: 2rem;
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .post-title {
+            padding: 1rem;
+            color: var(--text-color);
+            font-size: 1.1rem;
             text-align: center;
-            margin-top: auto;
         }
 
-        /* Mobile Menu Icon */
-        .menu-icon {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-left: 250px;
         }
 
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
+            .sidebar {
+                left: -250px;
+                transition: 0.3s ease;
             }
 
-            .menu-icon {
-                display: block;
+            .sidebar.active {
+                left: 0;
             }
 
             .main-content {
                 margin-left: 0;
             }
 
-            .sidebar.active + .main-content {
-                margin-left: 250px;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .sidebar {
-                left: 0;
+            .posts-grid {
+                grid-template-columns: 1fr;
             }
 
-            .main-content {
-                margin-left: 250px;
+            .nav-toggle {
+                display: block;
+            }
+
+            .footer {
+                margin-left: 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
-        <a href="#" class="logo">🌙 Islamic Dua</a>
-        <i class="menu-icon fas fa-bars"></i>
-        <nav class="nav-menu">
-            <a href="#home">Home</a>
-            <a href="#duas">Duas</a>
-                        <a href="#duas">Surah</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
+        <a href="#" class="logo">🌙 Dua & Prayers</a>
+        <button class="nav-toggle" id="navToggle">☰</button>
     </header>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
         <h3>Categories</h3>
         <ul>
-            <li><a href="#morning">Morning Duas</a></li>
-            <li><a href="#night">Evening Duas</a></li>
-            <li><a href="#prayer">Prayer Duas</a></li>
-            <li><a href="#quran">Quranic Duas</a></li>
-            <li><a href="#prophet">Ramadan Duas</a></li>
+            <li><a href="#">Morning & Evening</a></li>
+            <li><a href="#">Prayer Times</a></li>
+            <li><a href="#">Quranic Duas</a></li>
+            <li><a href="#">Daily Duas</a></li>
         </ul>
     </aside>
 
-    <!-- Main Content -->
     <main class="main-content">
-        <div class="dua-card">
-            <h2>वुज़ू की दुआ और तरीका
-            - Wazu ki dua aur Tariqa</h2>
-        
-            <p class="arabic">आऊज़ु बिल्लाहि मिना शैतानिर्रजीम। बिस्मिल्लाहिर्रहमानिर्रहीम।...</p>
-            <p>Translation: "मैं अल्लाह के नाम से शुरू करता हूं, जो बड़ा मेहरबान और रहम वाला है।"</p>
-        </div>
-
-        <div class="dua-card">
-            <h2>नमाज़ में सलाम फेरने से पहले की दुआ</h2>
-            <p class="arabic"> التحيات لله والصلوات والطيب..</p>
-            <p>Translation: "अत्तहियातु लिल्लाहि वस्सलावातु वत्तय्यिबातु"</p>
+        <div class="posts-grid">
+            <!-- Repeat this block 10 times -->
+            <article class="post-card">
+                <img src="placeholder-thumbnail.jpg" alt="Dua thumbnail" class="post-thumbnail" loading="lazy">
+                <h2 class="post-title">Dua for Morning</h2>
+            </article>
+            <!-- Repeat post cards -->
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2023 Islamic Dua. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#privacy">Privacy Policy</a> | 
-            <a href="#terms">Terms of Use</a>
-        </div>
+        <p>© 2023 Islamic Duas & Prayers. All rights reserved.</p>
     </footer>
 
     <script>
-        // Toggle Sidebar
-        document.querySelector('.menu-icon').addEventListener('click', () => {
-            document.querySelector('.sidebar').classList.toggle('active');
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const sidebar = document.getElementById('sidebar');
 
-        // Close sidebar when clicking outside
-        document.addEventListener('click', (event) => {
-            const sidebar = document.querySelector('.sidebar');
-            const menuIcon = document.querySelector('.menu-icon');
-            
-            if (!sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
-                sidebar.classList.remove('active');
-            }
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+            navToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
             });
+
+            // Simulated content - generate 10 post cards
+            const postsGrid = document.querySelector('.posts-grid');
+            for (let i = 0; i < 10; i++) {
+                postsGrid.innerHTML += `
+                    <article class="post-card">
+                        <img src="placeholder-thumbnail.jpg" alt="Dua thumbnail" 
+                             class="post-thumbnail" loading="lazy" 
+                             width="400" height="200">
+                        <h2 class="post-title">Dua Title ${i+1}</h2>
+                    </article>
+                `;
+            }
         });
     </script>
 </body>
